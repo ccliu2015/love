@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+def AAVersion="3.1";
 
 android {
     compileSdkVersion 21
@@ -22,4 +24,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+
+    /*AndroidAnnotations jar*/
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+}
+
+/**
+ * AA注解Apt配置（注意，该配置必须有！！）
+ */
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName 'com.wisedu.scc.love'
+    }
 }

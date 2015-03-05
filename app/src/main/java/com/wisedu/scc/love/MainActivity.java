@@ -1,39 +1,33 @@
 package com.wisedu.scc.love;
 
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.wisedu.scc.love.utils.CommonUtil;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_main)
+@OptionsMenu(R.menu.menu_main)
 public class MainActivity extends ActionBarActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @ViewById
+    public TextView textView1;
+
+    @AfterViews
+    protected void doAfterViews(){
+        textView1.setText("哈哈");
+        CommonUtil.shortToast(this, "这是一个很好的起步");
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    @OptionsItem(R.id.action_settings)
+    protected void settings(){
+        CommonUtil.shortToast(this, "你点击了设置");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
