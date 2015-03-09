@@ -18,4 +18,9 @@ public class CommonUtil {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
+    /*判断字符串是否为空*/
+    public static boolean IsEmpty(String s){
+        return null==s || "".equals(s);
+    }
+
 }
