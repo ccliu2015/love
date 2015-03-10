@@ -2,6 +2,7 @@ package com.wisedu.scc.love.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -9,11 +10,15 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.wisedu.scc.love.utils.CommonUtil;
 
 /**
  * Created by JZ on 2015/3/9.
  */
 public class BaseActivity extends Activity {
+
+    // 退出系统字段
+    protected long exitTime = 0;
 
     /*图片下载类*/
     public ImageLoader imageLoader = ImageLoader.getInstance();
@@ -41,4 +46,18 @@ public class BaseActivity extends Activity {
         imageLoader.init(config); // 必须先初始化ImageLoader
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                CommonUtil.shortToast(getApplicationContext(), "再按一次退出系统");
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

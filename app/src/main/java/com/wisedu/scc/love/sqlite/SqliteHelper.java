@@ -144,6 +144,35 @@ public class SqliteHelper {
     }
 
     /**
+     * 根据用户名称和密码取得用户
+     * @param phone
+     * @param psw
+     * @return
+     */
+    public User getByPhoneAndPsw(String phone, String psw) {
+        try {
+            User user = null;
+            // 取出数据
+            SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+            Cursor cursor = db.query(TABLE_NAME, null, PHONE+"=? and "+PSW+"=?", new String[]{phone, psw}, null, null, null, null);
+            // 遍历数据
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(0);
+                String avatar = cursor.getString(1);
+                String nickName = cursor.getString(2);
+                String location = cursor.getString(3);
+                user = new User(id, avatar, nickName, location, phone, psw);
+            }
+            cursor.close();
+            db.close();
+            return user;
+        } catch (Exception e) {
+            Log.i("查询语句：", TABLE_NAME);
+            return null;
+        }
+    }
+
+    /**
      * 删除一张表
      * @return
      */

@@ -1,9 +1,8 @@
 package com.wisedu.scc.love;
 
-import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.wisedu.scc.love.base.BaseActivity;
 import com.wisedu.scc.love.utils.CommonUtil;
 
 import org.androidannotations.annotations.AfterViews;
@@ -14,7 +13,7 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_main)
 @OptionsMenu(R.menu.menu_main)
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
     @ViewById
     public TextView textView1;

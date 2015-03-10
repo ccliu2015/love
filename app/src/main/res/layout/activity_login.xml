@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <!--头像-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/avatarLayout"
         android:layout_width="fill_parent"
         android:layout_height="160dp"
@@ -13,10 +13,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="#ff6eddcd"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <!--手机-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/phoneLayout"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -29,20 +29,24 @@
             android:layout_height="40dp"
             android:text="手机"
             android:textSize="16dp"
-            android:gravity="right"
+            android:gravity="center"
             android:layout_marginRight="20dp"
             />
         <EditText
             android:id="@+id/phoneEdit"
             android:layout_height="30dp"
-            android:layout_width="10dp"
-            android:gravity="center"
-            android:layout_weight="0.9"
+            android:layout_width="100dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignBottom="@+id/phoneText"
+            android:layout_toRightOf="@+id/phoneText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             />
-    </LinearLayout>
+    </RelativeLayout>
 
     <!--密码-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/pswLayout"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -55,21 +59,24 @@
             android:layout_height="40dp"
             android:text="密码"
             android:textSize="16dp"
-            android:gravity="right"
+            android:gravity="center"
             android:layout_marginRight="20dp"
             />
         <EditText
             android:inputType="textPassword"
             android:id="@+id/pswEdit"
             android:layout_height="30dp"
-            android:layout_width="10dp"
-            android:gravity="center"
-            android:layout_weight="0.9"
-            />
-    </LinearLayout>
+            android:layout_width="100dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignBottom="@+id/pswText"
+            android:layout_toRightOf="@+id/pswText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
     <!--登录按钮-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/loginLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -80,14 +87,18 @@
             android:id="@+id/loginButton"
             android:layout_height="40dp"
             android:layout_width="10dp"
-            android:layout_weight="0.9"
             android:text="登录"
             android:background="@drawable/love_green_btn"
-            android:gravity="center" />
-    </LinearLayout>
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 
     <!--注册按钮-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/registerLayout"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
@@ -100,6 +111,6 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:text="注册" ></Button>
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

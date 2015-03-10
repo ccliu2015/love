@@ -1,24 +1,17 @@
 package com.wisedu.scc.love.splash;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.wisedu.scc.love.LoginActivity;
-import com.wisedu.scc.love.MainActivity;
+import com.wisedu.scc.love.LoginActivity_;
+import com.wisedu.scc.love.MainActivity_;
 import com.wisedu.scc.love.R;
 import com.wisedu.scc.love.base.BaseActivity;
 import com.wisedu.scc.love.config.Define;
@@ -30,11 +23,16 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Map;
+
 /**
  * Created by JZ on 2015/3/5.
  */
 @EActivity(R.layout.activity_splash)
 public class SplashActivity extends BaseActivity{
+
+    @Bean
+    public TerminalHelper terminalHelper;
 
     /*定义消息常量*/
     private static final int LOAD_SPLASH_IMAGE = 0;
@@ -53,7 +51,6 @@ public class SplashActivity extends BaseActivity{
     private Handler splashHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
             switch (msg.what) {
                 case LOAD_SPLASH_IMAGE:
                     loadSplash();
@@ -96,14 +93,9 @@ public class SplashActivity extends BaseActivity{
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                         if (loadedImage != null) {
-                            int w = loadedImage.getWidth();
-                            int h = loadedImage.getHeight();
-                            int mh = (int) (TerminalHelper.getScreen(getWindowManager()).get("W")) * h / w;
-                            if (w > 0 && h > 0) {
-                                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(w, mh);
-                                splashImage.setLayoutParams(lp);
-                                splashHandler.sendEmptyMessage(DO_INIT_TASK);
-                            }
+                            splashImage.setImageBitmap(loadedImage);
+                            splashImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                            splashHandler.sendEmptyMessage(DO_INIT_TASK);
                         }
                     }
 
@@ -116,18 +108,28 @@ public class SplashActivity extends BaseActivity{
     /*初始化资源*/
     public void initTask(){
         // TODO 在此初始化资源
-        splashHandler.sendEmptyMessage(TO_LOGIN_ACTIVITY);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    splashHandler.sendEmptyMessage(TO_LOGIN_ACTIVITY);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     /*跳转至登录页*/
     public void toLoginActivity(){
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity_.class));
         SplashActivity.this.finish();
     }
 
     /*跳转至主页*/
     public void toMainActivity(){
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MainActivity_.class));
         SplashActivity.this.finish();
     }
 
