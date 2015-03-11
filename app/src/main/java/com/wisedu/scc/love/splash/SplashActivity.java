@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -15,6 +14,7 @@ import com.wisedu.scc.love.MainActivity_;
 import com.wisedu.scc.love.R;
 import com.wisedu.scc.love.base.BaseActivity;
 import com.wisedu.scc.love.config.Define;
+import com.wisedu.scc.love.sqlite.SqliteHelper;
 import com.wisedu.scc.love.utils.CommonUtil;
 import com.wisedu.scc.love.utils.TerminalHelper;
 
@@ -22,8 +22,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.Map;
 
 /**
  * Created by JZ on 2015/3/5.
@@ -43,6 +41,9 @@ public class SplashActivity extends BaseActivity{
 
     @Bean
     public Define define;
+
+    @Bean
+    public SqliteHelper sqliteHelper;
 
     @ViewById(R.id.splashImage)
     public ImageView splashImage;
@@ -123,14 +124,27 @@ public class SplashActivity extends BaseActivity{
 
     /*跳转至登录页*/
     public void toLoginActivity(){
-        startActivity(new Intent(this, LoginActivity_.class));
-        SplashActivity.this.finish();
+        if(checkLogin()){
+            splashHandler.sendEmptyMessage(TO_MAIN_ACTIVITY);
+        } else {
+            startActivity(new Intent(this, LoginActivity_.class));
+            SplashActivity.this.finish();
+        }
     }
 
     /*跳转至主页*/
     public void toMainActivity(){
         startActivity(new Intent(this, MainActivity_.class));
         SplashActivity.this.finish();
+    }
+
+    /**
+     * 检查是否已登录
+     * @return
+     */
+    private boolean checkLogin(){
+        // TODO 根据缓存判断用户是否已登录
+        return sqliteHelper.getByPhoneAndPsw("1", "lcc")!=null;
     }
 
 }

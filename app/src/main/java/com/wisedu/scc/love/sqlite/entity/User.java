@@ -1,9 +1,11 @@
-package com.wisedu.scc.love.model;
+package com.wisedu.scc.love.sqlite.entity;
+
+import java.io.Serializable;
 
 /**
  * Created by JZ on 2015/3/9.
  */
-public class User {
+public class User implements Serializable{
 
     private String id;
     private String avatar;
@@ -11,6 +13,8 @@ public class User {
     private String location;
     private String phone;
     private String psw;
+
+    public User(){}
 
     public User(String id, String avatar, String nickName, String location,
                 String phone, String psw ){

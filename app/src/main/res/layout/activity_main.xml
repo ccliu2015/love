@@ -1,11 +1,63 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:love="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/textView1"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </android.support.v4.view.ViewPager>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/tabbg"
+        android:orientation="horizontal" >
+
+        <com.wisedu.scc.love.widget.ChangeColorIcon
+            android:id="@+id/id_indicator_main"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            love:icon="@drawable/ic_menu_start_conversation"
+            love:text="@string/tab_main"
+            love:text_size="12sp" />
+
+        <com.wisedu.scc.love.widget.ChangeColorIcon
+            android:id="@+id/id_indicator_contact"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            love:icon="@drawable/ic_menu_friendslist"
+            love:text="@string/tab_contact"
+            love:text_size="12sp" />
+
+        <com.wisedu.scc.love.widget.ChangeColorIcon
+            android:id="@+id/id_indicator_find"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            love:icon="@drawable/ic_menu_emoticons"
+            love:text="@string/tab_find"
+            love:text_size="12sp" />
+
+        <com.wisedu.scc.love.widget.ChangeColorIcon
+            android:id="@+id/id_indicator_me"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            love:icon="@drawable/ic_menu_allfriends"
+            love:text="@string/tab_me"
+            love:text_size="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

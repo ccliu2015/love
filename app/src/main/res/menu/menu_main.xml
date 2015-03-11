@@ -1,6 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/actionbar_search_icon"
+        android:showAsAction="ifRoom|collapseActionView"
+        android:title="@string/action_search"/>
+    <item
+        android:id="@+id/action_group_chat"
+        android:icon="@drawable/ofm_group_chat_icon"
+        android:title="@string/action_group_chat"/>
+    <item
+        android:id="@+id/action_add_friend"
+        android:icon="@drawable/ofm_add_icon"
+        android:title="@string/action_add_friend"/>
+    <item
+        android:id="@+id/action_scan"
+        android:icon="@drawable/ofm_qrcode_icon"
+        android:title="@string/action_scan"/>
+    <item
+        android:id="@+id/action_feed"
+        android:icon="@drawable/ofm_feedback_icon"
+        android:title="@string/action_feed"/>
 </menu>
