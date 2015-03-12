@@ -6,7 +6,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.wisedu.scc.love.base.BaseActivity;
+import com.wisedu.scc.love.sqlite.ModelFactory;
+import com.wisedu.scc.love.sqlite.SqlBuilder;
 import com.wisedu.scc.love.sqlite.SqliteHelper;
+import com.wisedu.scc.love.sqlite.model.User;
 import com.wisedu.scc.love.utils.CommonUtil;
 
 import org.androidannotations.annotations.Bean;
@@ -49,13 +52,16 @@ public class RegisterActivity extends BaseActivity {
         String psw = pswEdit.getText().toString();
         /*if(null == avatar.getDrawable()){
             CommonUtil.shortToast(RegisterActivity.this, "请设置头像！");
-        } else */if(CommonUtil.IsEmpty(nickName)||
-                CommonUtil.IsEmpty(location)||
-                CommonUtil.IsEmpty(phone)||
-                CommonUtil.IsEmpty(psw)){
+        } else */if(CommonUtil.isEmpty(nickName)||
+                CommonUtil.isEmpty(location)||
+                CommonUtil.isEmpty(phone)||
+                CommonUtil.isEmpty(psw)){
             CommonUtil.shortToast(RegisterActivity.this, "请填写完整再登录！");
+        } else if(sqliteHelper.check(ModelFactory.getUserTableName(),
+                SqlBuilder.geneWhere("=", "phone"), new String[]{phone})){
+            CommonUtil.shortToast(RegisterActivity.this, "该手机号码已存在！");
         } else {
-            // 存储填写值
+            // TODO 头像信息处理
             storeUser("", nickName, location, phone, psw);
             CommonUtil.shortToast(RegisterActivity.this, "注册成功！请登录。");
             startActivity(new Intent(RegisterActivity.this, LoginActivity_.class));
@@ -72,7 +78,8 @@ public class RegisterActivity extends BaseActivity {
      * @param psw
      */
     private void storeUser(String avatar, String nickName, String location, String phone, String psw) {
-        sqliteHelper.insert(avatar, nickName, location, phone, psw);
+        sqliteHelper.insert(ModelFactory.getUserTableName(),
+                new User(avatar, nickName, location, phone, psw));
     }
 
 }

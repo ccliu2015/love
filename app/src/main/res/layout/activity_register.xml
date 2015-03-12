@@ -34,9 +34,8 @@
             />
         <EditText
             android:id="@+id/nickEdit"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_width="10dp"
-            android:gravity="center"
             android:layout_weight="0.9"
             />
     </LinearLayout>
@@ -60,9 +59,8 @@
             />
         <EditText
             android:id="@+id/locationEdit"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_width="10dp"
-            android:gravity="center"
             android:layout_weight="0.9"
             />
     </LinearLayout>
@@ -86,9 +84,8 @@
             />
         <EditText
             android:id="@+id/phoneEdit"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_width="10dp"
-            android:gravity="center"
             android:layout_weight="0.9"
             />
     </LinearLayout>
@@ -113,9 +110,8 @@
         <EditText
             android:inputType="textPassword"
             android:id="@+id/pswEdit"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_width="10dp"
-            android:gravity="center"
             android:layout_weight="0.9"
             />
     </LinearLayout>

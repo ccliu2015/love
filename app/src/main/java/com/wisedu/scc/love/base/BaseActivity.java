@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.wisedu.scc.love.application.LoveApplication;
 import com.wisedu.scc.love.utils.CommonUtil;
 
 /**
@@ -60,4 +61,11 @@ public class BaseActivity extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        LoveApplication.getInstance().addActivity(this);
+        super.onCreate(savedInstanceState);
+    }
+
 }

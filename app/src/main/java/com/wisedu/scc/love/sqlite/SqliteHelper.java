@@ -7,14 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.wisedu.scc.love.sqlite.entity.User;
-import com.wisedu.scc.love.sqlite.provider.UserProvider;
-
 import org.androidannotations.annotations.EBean;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by JZ on 2015/3/9.
@@ -35,13 +31,17 @@ public class SqliteHelper {
     /**
      * 插入一条数据
      * @param tableName
-     * @param values
      * @return
      */
-    public boolean insert(String tableName, ContentValues values) {
+    public boolean insert(String tableName, Object obj) {
         try {
+            // 先处理表
+            dealTableFirst(tableName);
+
             SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+            ContentValues values = SqlBuilder.geneValues(tableName, obj);
             db.insert(tableName, null, values);
+            db.close();
             Log.i("插入语句：", tableName);
             return true;
         } catch (Exception e) {
@@ -55,14 +55,18 @@ public class SqliteHelper {
      * @param tableName
      * @param whereClause
      * @param whereArgs
-     * @param values
      * @return
      */
-    public boolean update(String tableName, String whereClause,
-                          String[] whereArgs, ContentValues values ) {
+    public boolean update(String tableName, Object obj, String whereClause,
+                          String[] whereArgs) {
         try {
+            // 先处理表
+            dealTableFirst(tableName);
+
             SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+            ContentValues values = SqlBuilder.geneValues(tableName, obj);
             db.update(tableName, values, whereClause, whereArgs);
+            db.close();
             Log.i("修改语句：", tableName);
             return true;
         } catch (Exception e) {
@@ -72,7 +76,7 @@ public class SqliteHelper {
     }
 
     /**
-     * 删除一条数据
+     * 删除数据
      * @param tableName
      * @param whereClause
      * @param whereArgs
@@ -80,9 +84,13 @@ public class SqliteHelper {
      */
     public boolean delete(String tableName, String whereClause, String[] whereArgs) {
         try {
+            // 先处理表
+            dealTableFirst(tableName);
+
             SQLiteDatabase db = mOpenHelper.getWritableDatabase();
             db.delete(tableName, whereClause, whereArgs);
             Log.i("删除语句：", tableName);
+            db.close();
             return true;
         } catch (Exception e) {
             Log.i("删除语句：", tableName);
@@ -91,62 +99,60 @@ public class SqliteHelper {
     }
 
     /**
-     * 取出所有数据
+     * 查找数据
      * @return
      */
-    public List<?> getAll(String tableName) {
-        try {
-            List<?> users = new ArrayList<>();
+    public <T> List<T> get(String tableName, String[] columns, String whereClause,
+                                 String[] whereArgs, String groupBy, String having,
+                                 String orderBy, String limit) {
+        // 先处理表
+        dealTableFirst(tableName);
 
-            // 取出数据
-            SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-            Cursor cursor = db.query(tableName, null, null, null, null, null, null, null);
-            // 遍历数据
+        // 取出数据
+        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        Cursor cursor = db.query(tableName, columns, whereClause,
+                whereArgs, groupBy, having, orderBy, limit);
+        try {
+            List<T> list = new ArrayList<T>();
             while (cursor.moveToNext()) {
-                String id = cursor.getString(0);
-                String avatar = cursor.getString(1);
-                String nickName = cursor.getString(2);
-                String location = cursor.getString(3);
-                String phone = cursor.getString(4);
-                String psw = cursor.getString(5);
-                user = new User(id, avatar, nickName, location, phone, psw);
-                users.add(user);
+                T t = SqlBuilder.cursor2Entity(cursor, tableName);
+                list.add(t);
             }
-            cursor.close();
-            db.close();
-            return users;
+            return list;
         } catch (Exception e) {
-            Log.i("查询语句：", TABLE_NAME);
-            return null;
+            e.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+            if (db != null)
+                db.close();
         }
+        return null;
     }
 
     /**
-     * 根据用户名称和密码取得用户
-     * @param phone
-     * @param psw
+     * 检查存在
+     * @param tableName
+     * @param whereClause
+     * @param whereArgs
      * @return
      */
-    public User getByPhoneAndPsw(String phone, String psw) {
+    public boolean check(String tableName, String whereClause, String[] whereArgs) {
+        // 先处理表
+        dealTableFirst(tableName);
+
+        SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        Cursor cursor = db.query(tableName,null, whereClause, whereArgs, null, null, null);
         try {
-            User user = null;
-            // 取出数据
-            SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-            Cursor cursor = db.query(TABLE_NAME, null, PHONE+"=? and "+PSW+"=?", new String[]{phone, psw}, null, null, null, null);
-            // 遍历数据
-            while (cursor.moveToNext()) {
-                String id = cursor.getString(0);
-                String avatar = cursor.getString(1);
-                String nickName = cursor.getString(2);
-                String location = cursor.getString(3);
-                user = new User(id, avatar, nickName, location, phone, psw);
-            }
-            cursor.close();
-            db.close();
-            return user;
+            return (null!=cursor&&cursor.getCount()>0);
         } catch (Exception e) {
-            Log.i("查询语句：", TABLE_NAME);
-            return null;
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (cursor != null)
+                cursor.close();
+            if(null!=db)
+                db.close();
         }
     }
 
@@ -159,6 +165,7 @@ public class SqliteHelper {
             SQLiteDatabase db = mOpenHelper.getWritableDatabase();
             String sql = "drop table " + tableName;
             db.execSQL(sql);
+            db.close();
             return true;
         } catch (Exception e) {
             return false;
@@ -173,28 +180,58 @@ public class SqliteHelper {
         try {
             SQLiteDatabase db = mOpenHelper.getWritableDatabase();
             String dropSql = "drop table if exists "+tableName;
-            String createSql = createSql();
+            String createSql = SqlBuilder.geneSql(tableName);
             db.execSQL(dropSql);
             db.execSQL(createSql);
+            db.close();
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
+    /**
+     * 检查表是否存在，不存在则创建
+     */
+    private void dealTableFirst(String table){
+        if(null!=table) {
+            SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+            try {
+                String sql = "select count(0) from sqlite_master"
+                        + " where type ='table' and name ='" + table.trim() + "' ";
+                Cursor cursor = db.rawQuery(sql, null);
+                if (null == cursor || cursor.getCount() == 0) {
+                    String createSql = SqlBuilder.geneSql(table);
+                    db.execSQL(createSql);
+                } else {
+                    cursor.close();
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            } finally {
+                if(null!=db)
+                    db.close();
+            }
+        }
+    }
 
-
+    /**
+     * 内部静态类
+     * SQLite使用帮助
+     */
     public static class DatabaseHelper extends SQLiteOpenHelper{
+
         DatabaseHelper(Context context){
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
+        /*数据库第一次创建时调用，可以在此建表及做一些初始化*/
         @Override
         public void onCreate(SQLiteDatabase db) {
-            // SQL语句
-            String sql = new UserProvider().getClass();
-            //执行SQL语句
-            db.execSQL(sql);
+            // 初始化所有表
+            for(String sql : SqlBuilder.allCreateSql()){
+                db.execSQL(sql);
+            }
         }
 
         @Override
@@ -202,4 +239,5 @@ public class SqliteHelper {
             // TODO
         }
     }
+
 }

@@ -17,33 +17,51 @@ public class ReflectBeanUtil {
 
     /**
      * 根据字符串获取JavaBean
-     * @param className, 例如：com.package.MyClass
+     * @param beanName, 例如：com.package.MyClass
      */
-    public static Object getBeanByClassName(String className) {
+    public static Object getInstanceByBeanName(String beanName) {
         try {
-            return Class.forName(className).newInstance();
+            return Class.forName(beanName).newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
+    }
+
+    /**
+     * 根据字符串获取JavaBean
+     * @param beanName, 例如：com.package.MyClass
+     */
+    public static Class<?> getClazzByBeanName(String beanName) {
+        try {
+            return Class.forName(beanName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
      * 根据JavaBean获取属性名称和类型
-     * @param obj
+     * @param beanName  例如：com.package.MyClass
      * @return
      */
-    public static Map<String, Object> getFieldsByObj(Object obj) {
-        Map<String, Object> results = new HashMap<String, Object>();
-        Field[] fields = obj.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            String key = field.getName();
-            Type type = field.getGenericType();
-            if (!NOFIELDNAME.equals(key)) {
-                results.put(key, type);
+    public static Map<String, Field> getFields(String beanName) {
+        try {
+            Object obj = getInstanceByBeanName(beanName);
+            Map<String, Field> results = new HashMap<>();
+            Field[] fields = obj.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                String key = field.getName();
+                if (!NOFIELDNAME.equals(key)) {
+                    results.put(key, field);
+                }
             }
+            return results;
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        return results;
+        return null;
     }
 
     /**
@@ -60,8 +78,9 @@ public class ReflectBeanUtil {
             Object value = method.invoke(obj, new Object[]{});
             return value;
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**

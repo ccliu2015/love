@@ -1,5 +1,6 @@
 package com.wisedu.scc.love.base;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
@@ -10,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.wisedu.scc.love.R;
+import com.wisedu.scc.love.application.LoveApplication;
 import com.wisedu.scc.love.utils.CommonUtil;
 
 /**
@@ -67,6 +69,12 @@ public class BaseFragmentActivity extends FragmentActivity {
      */
     @Override
     protected void onUserLeaveHint() {
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        LoveApplication.getInstance().addActivity(this);
+        super.onCreate(savedInstanceState);
     }
 
 }

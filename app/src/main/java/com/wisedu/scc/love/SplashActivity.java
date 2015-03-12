@@ -1,4 +1,4 @@
-package com.wisedu.scc.love.splash;
+package com.wisedu.scc.love;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,11 +9,10 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.wisedu.scc.love.LoginActivity_;
-import com.wisedu.scc.love.MainActivity_;
-import com.wisedu.scc.love.R;
 import com.wisedu.scc.love.base.BaseActivity;
 import com.wisedu.scc.love.config.Define;
+import com.wisedu.scc.love.sqlite.ModelFactory;
+import com.wisedu.scc.love.sqlite.SqlBuilder;
 import com.wisedu.scc.love.sqlite.SqliteHelper;
 import com.wisedu.scc.love.utils.CommonUtil;
 import com.wisedu.scc.love.utils.TerminalHelper;
@@ -143,8 +142,8 @@ public class SplashActivity extends BaseActivity{
      * @return
      */
     private boolean checkLogin(){
-        // TODO 根据缓存判断用户是否已登录
-        return sqliteHelper.getByPhoneAndPsw("1", "lcc")!=null;
+        return sqliteHelper.check(ModelFactory.getLoginTableName()
+        , SqlBuilder.geneWhere("=", "status"), new String[]{"on"});
     }
 
 }

@@ -1,4 +1,4 @@
-package com.wisedu.scc.love.model.entity;
+package com.wisedu.scc.love.entity.entity;
 
 import java.io.Serializable;
 

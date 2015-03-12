@@ -1,6 +1,7 @@
-package com.wisedu.scc.love.sqlite.entity;
+package com.wisedu.scc.love.sqlite.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * Created by JZ on 2015/3/9.
@@ -16,9 +17,9 @@ public class User implements Serializable{
 
     public User(){}
 
-    public User(String id, String avatar, String nickName, String location,
+    public User(String avatar, String nickName, String location,
                 String phone, String psw ){
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.avatar = avatar;
         this.nickName = nickName;
         this.location = location;

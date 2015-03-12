@@ -1,4 +1,4 @@
-package com.wisedu.scc.love.sqlite.entity;
+package com.wisedu.scc.love.sqlite.model;
 
 import java.io.Serializable;
 
@@ -13,6 +13,7 @@ public class ChatRecord implements Serializable {
     private String content;
     private String time;
     private String urNumber;
+
 
     public ChatRecord(){}
 
