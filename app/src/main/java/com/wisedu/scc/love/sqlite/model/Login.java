@@ -10,13 +10,15 @@ public class Login implements Serializable {
     private String phone;
     private String psw;
     private String status; // 登录状态，on代表已登录，off代表未登录
+    private String lastTime; // 最后一次登录时间
 
     public Login(){}
 
-    public Login(String phone, String psw, String status){
+    public Login(String phone, String psw, String status, String lastTime){
         this.phone = phone;
         this.psw = psw;
         this.status = status;
+        this.lastTime = lastTime;
     }
 
     public String getPhone() {
@@ -41,6 +43,14 @@ public class Login implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLastTime() {
+        return lastTime;
+    }
+
+    public void setLastTime(String lastTime) {
+        this.lastTime = lastTime;
     }
 
 }

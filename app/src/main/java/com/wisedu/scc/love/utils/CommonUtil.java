@@ -3,6 +3,10 @@ package com.wisedu.scc.love.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 常用方法工具类
  * Created by JZ on 2015/3/5.
@@ -52,6 +56,16 @@ public class CommonUtil {
      */
     public static String cutLastChar(String str){
         return (isEmpty(str)) ? str : str.substring(0, str.length()-1);
+    }
+
+    /**
+     * 获取当前时间
+     * @return
+     */
+    public static String getCurrentTime(){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置显示格式
+        String nowTime = format.format(new Date());
+        return nowTime;
     }
 
 }

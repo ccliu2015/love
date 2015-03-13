@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="text_emojis">
+        <item>( •̀ .̫ •́ )✧</item>
+        <item>(๑•ᴗ•๑)</item>
+        <item>→_→</item>
+        <item>ヘ(￣ω￣ヘ)</item>
+        <item>⊙▽⊙</item>
+        <item>o(*≧▽≦)ツ┏━┓</item>
+        <item>(*/ω＼*)</item>
+        <item>(:з」∠)</item>
+        <item>|･ω･｀)</item>
+        <item>(ˉ﹃ˉ)</item>
+        <item>(｡･ω･｡)ﾉ♡</item>
+        <item>(づ￣ ³￣)づ</item>
+        <item>（○゜ε＾○）</item>
+        <item>QAQ</item>
+        <item>(´；ω；`)</item>
+        <item>⊙︿⊙</item>
+        <item>━Σ(ﾟДﾟ|||)━</item>
+        <item>∑(O_O；)</item>
+        <item>.(´⊙ω⊙｀)</item>
+        <item>(。-ω-)zzz</item>
+        <item>（￣へ￣）</item>
+        <item>⊙﹏⊙</item>
+        <item> (￣ε(#￣)</item>
+        <item>╮(╯▽╰)╭</item>
+        <item>￣▽￣</item>
+        <item>(ಥ﹏ಥ)  </item>
+        <item>(´థ౪థ)σ </item>
+    </string-array>
+</resources>

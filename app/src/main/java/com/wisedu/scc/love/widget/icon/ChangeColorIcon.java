@@ -1,4 +1,4 @@
-package com.wisedu.scc.love.widget;
+package com.wisedu.scc.love.widget.icon;
 
 import android.content.Context;
 import android.content.res.TypedArray;

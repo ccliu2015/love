@@ -56,8 +56,8 @@ public class BaseFragmentActivity extends FragmentActivity {
                 CommonUtil.shortToast(getApplicationContext(), "再按一次退出系统");
                 exitTime = System.currentTimeMillis();
             } else {
-                finish();
-                System.exit(0);
+                // 退出应用
+                LoveApplication.getInstance().exit();
             }
             return true;
         }

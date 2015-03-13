@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_emoji_frame"
+    android:gravity="center"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp" >
+
+    <TextView
+        android:id="@+id/tv_emoji"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="#686868"
+        android:textSize="@dimen/widget_text_emoji_size"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout><!-- From: file:/D:/GitRepository/repository/wisedu/sdk/common-widget/res/layout/widget_text_emoji_item.xml -->

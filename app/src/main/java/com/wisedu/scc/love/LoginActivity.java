@@ -9,12 +9,16 @@ import com.wisedu.scc.love.sqlite.ModelFactory;
 import com.wisedu.scc.love.sqlite.SqlBuilder;
 import com.wisedu.scc.love.sqlite.SqliteHelper;
 import com.wisedu.scc.love.sqlite.model.Login;
+import com.wisedu.scc.love.sqlite.model.User;
 import com.wisedu.scc.love.utils.CommonUtil;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
 
 /**
  * Created by JZ on 2015/3/9.
@@ -51,7 +55,7 @@ public class LoginActivity extends BaseActivity {
             CommonUtil.shortToast(LoginActivity.this, "登录成功！");
             // 缓存登录信息
             sqliteHelper.insert(ModelFactory.getLoginTableName(),
-                    new Login(phone, psw, "on"));
+                    new Login(phone, psw, "on", CommonUtil.getCurrentTime()));
             startActivity(new Intent(LoginActivity.this, MainActivity_.class));
             LoginActivity.this.finish();
         }
@@ -60,7 +64,11 @@ public class LoginActivity extends BaseActivity {
     @Click(R.id.registerButton)
     public void doRegister(){
         startActivity(new Intent(LoginActivity.this, RegisterActivity_.class));
-        LoginActivity.this.finish();
+    }
+
+    @AfterViews
+    public void doAfterViews(){
+        dealLogin();
     }
 
     /**
@@ -75,18 +83,15 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * 检查用户是否登录
-     * @param phone
-     * @param psw
-     * @return true 存在，false 不存在
+     * 选出最近登陆的第一个账户
      */
-    private void dealLogin(String phone, String psw) {
-        boolean isLogin =  sqliteHelper.check(ModelFactory.getLoginTableName(),
-                SqlBuilder.geneWhere("=","phone", "psw", "status"), new String[]{phone, psw, "on"});
-        if(isLogin){
-
-        } else {
-
+    private void dealLogin() {
+        List<Login> logins = sqliteHelper.get(ModelFactory.getLoginTableName(), new String[]{"phone"},
+               null, null, null,  null, "lastTime desc", null);
+        if(null!=logins&&logins.size()>0){
+            Login login = logins.get(0);
+            if(null!=login)
+                phoneEdit.setText(login.getPhone());
         }
     }
 

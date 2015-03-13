@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\GitRepository\love\love\sdk\spinnerwheel\res"><file name="wheel_bg_hor" path="D:\GitRepository\love\love\sdk\spinnerwheel\res\drawable\wheel_bg_hor.xml" qualifiers="" type="drawable"/><file name="wheel_bg_ver" path="D:\GitRepository\love\love\sdk\spinnerwheel\res\drawable\wheel_bg_ver.xml" qualifiers="" type="drawable"/><file name="wheel_val" path="D:\GitRepository\love\love\sdk\spinnerwheel\res\drawable\wheel_val.xml" qualifiers="" type="drawable"/><file name="ic_launcher" path="D:\GitRepository\love\love\sdk\spinnerwheel\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="D:\GitRepository\love\love\sdk\spinnerwheel\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="D:\GitRepository\love\love\sdk\spinnerwheel\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file path="D:\GitRepository\love\love\sdk\spinnerwheel\res\values\strings.xml" qualifiers=""><string name="app_name">spinnerwheel</string><string name="common_please_choose">请选择</string></file><file path="D:\GitRepository\love\love\sdk\spinnerwheel\res\values\wheel__attrs.xml" qualifiers=""><declare-styleable name="WheelHorizontalView">
+        <attr format="dimension" name="selectionDividerWidth"/>
+    </declare-styleable><declare-styleable name="AbstractWheelView">
+        <attr format="integer" name="visibleItems"/>
+        <attr format="boolean" name="isAllVisible"/>
+        <attr format="integer" name="itemOffsetPercent"/>
+        <attr format="dimension" name="itemsPadding"/>
+        <attr format="integer" name="selectionDividerDimmedAlpha"/>
+        <attr format="integer" name="selectionDividerActiveAlpha"/>
+        <attr format="reference" name="selectionDivider"/>
+        <attr format="integer" name="itemsDimmedAlpha"/>
+        <attr format="boolean" name="isCyclic"/>
+    </declare-styleable><declare-styleable name="WheelVerticalView">
+        <attr format="dimension" name="selectionDividerHeight"/>
+    </declare-styleable><attr format="reference" name="abstractWheelViewStyle"/></file></source><source path="D:\GitRepository\love\love\sdk\spinnerwheel\build\generated\res\rs\release"/><source path="D:\GitRepository\love\love\sdk\spinnerwheel\build\generated\res\generated\release"/></dataSet><dataSet config="release"><source path="D:\GitRepository\love\love\sdk\spinnerwheel\src\release\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="WheelHorizontalView"><attr format="dimension" name="selectionDividerWidth"/></declare-styleable><declare-styleable name="WheelVerticalView"><attr format="dimension" name="selectionDividerHeight"/></declare-styleable><declare-styleable name="AbstractWheelView"><attr format="integer" name="visibleItems"/><attr format="boolean" name="isAllVisible"/><attr format="integer" name="itemOffsetPercent"/><attr format="dimension" name="itemsPadding"/><attr format="integer" name="selectionDividerDimmedAlpha"/><attr format="integer" name="selectionDividerActiveAlpha"/><attr format="reference" name="selectionDivider"/><attr format="integer" name="itemsDimmedAlpha"/><attr format="boolean" name="isCyclic"/></declare-styleable></configuration></mergedItems></merger>

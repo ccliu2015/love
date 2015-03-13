@@ -1,10 +1,13 @@
 package com.wisedu.scc.love;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
@@ -14,13 +17,13 @@ import com.wisedu.scc.love.fragment.ContactTabFragment;
 import com.wisedu.scc.love.fragment.FindTabFragment;
 import com.wisedu.scc.love.fragment.MainTabFragment;
 import com.wisedu.scc.love.fragment.MeTabFragment;
-import com.wisedu.scc.love.utils.CommonUtil;
-import com.wisedu.scc.love.widget.ChangeColorIcon;
+import com.wisedu.scc.love.widget.icon.ChangeColorIcon;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

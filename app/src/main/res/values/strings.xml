@@ -13,4 +13,21 @@
     <string name="tab_find">秀场</string>
     <string name="tab_me">我</string>
 
+    <string name="register">手机号码是登录及取回密码的凭证，请确保正确。</string>
+
+    <string name="default_progress_dialog_message">请稍候&#8230;</string>
+    <string name="common_widget_dialog_default_title">温馨提示</string>
+    <string name="widget_media_remove">移除</string>
+
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="saving_image">正在保存图片&#8230;</string>
+    <string name="preparing_card">正在准备存储卡</string>
+    <string name="no_storage_card">没有存储卡!</string>
+    <string name="not_enough_space">没有空间!</string>
+
+    <string name="common_please_choose">请选择</string>
+
+    <string name="widget_emoji_default">默认</string>
+
 </resources>

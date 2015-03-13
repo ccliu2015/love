@@ -1,5 +1,6 @@
 package com.wisedu.scc.love.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.wisedu.scc.love.LoginActivity_;
 import com.wisedu.scc.love.R;
 import com.wisedu.scc.love.application.LoveApplication;
 import com.wisedu.scc.love.sqlite.ModelFactory;
@@ -38,8 +40,9 @@ public class MeTabFragment extends Fragment {
                 Login login = new Login();
                 login.setStatus("off");
                 sqliteHelper.update(ModelFactory.getLoginTableName(), login, null, null);
-                // 然后退出应用
-                LoveApplication.getInstance().exit();
+                // 跳转至登录页面
+                MeTabFragment.this.getActivity().finish();
+                startActivity(new Intent(MeTabFragment.this.getActivity(), LoginActivity_.class));
             }
         });
         return view;

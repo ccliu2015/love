@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/updater_widget_dialog_title"
+        style="@style/updater_widget_dialog_text_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/widget_dialog_title_bg"
+        android:padding="10dp"
+        android:lineSpacingExtra="3dp"
+        android:singleLine="true"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/updater_widget_dialog_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/widget_dialog_message_bg"
+        android:orientation="vertical"
+        android:padding="12dp" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/updater_widget_dialog_message_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/updater_widget_dialog_message"
+                    style="@style/updater_widget_dialog_button_text_size"
+                    android:lineSpacingExtra="3dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/updater_widget_dialog_progress_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dip"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" >
+
+                <TextView
+                    android:id="@+id/updater_widget_dialog_progress_desc"
+                    style="@style/updater_widget_dialog_button_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:layout_marginBottom="5dip"/>
+
+                <ProgressBar
+                    android:id="@+id/updater_widget_dialog_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+					android:indeterminateDrawable="@drawable/progress_indeterminate_horizontal"
+					android:progressDrawable="@drawable/progress_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/updater_widget_dialog_btn_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/updater_widget_dialog_positiveButton"
+                style="@style/common_widget_dialog_button_text_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/common_widget_dialog_positive_button_bg"
+                android:singleLine="true"
+                android:minHeight="30dip" />
+
+            <Button
+                android:id="@+id/updater_widget_dialog_negativeButton"
+                style="@style/common_widget_dialog_button_text_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:background="@drawable/common_widget_dialog_negative_button_bg"
+                android:singleLine="true"
+                android:minHeight="30dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
