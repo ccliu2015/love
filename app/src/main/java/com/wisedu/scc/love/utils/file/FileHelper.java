@@ -26,10 +26,10 @@ import java.util.zip.ZipOutputStream;
  */
 public class FileHelper {
 
-	private static final int BUFFER = 0x1000; // 缓冲大小，4K
-	private static final String CATALOG_DIR = "love"; // 目录路径
-	private static final String TMP_DIR = "tmp"; // 缓存路径
-    private static final String IMG_DIR = "img"; // 图片路径
+    public static final int BUFFER = 0x1000; // 缓冲大小，4K
+	public static final String CATALOG_DIR = "love"; // 目录路径
+    public static final String TMP_DIR = "tmp"; // 缓存路径
+    public static final String IMG_DIR = "img"; // 图片路径
 
     /**
      * 保存文件至目录

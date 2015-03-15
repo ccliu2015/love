@@ -7,7 +7,7 @@ import android.os.Environment;
 import java.io.File;
 
 @SuppressLint("NewApi")
-public class EnviromentUtil {
+public class EnvironmentUtil {
 
 	public static final String APP = "/wisedu";
 

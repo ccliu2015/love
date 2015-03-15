@@ -112,6 +112,7 @@ containing a value of this type.
     }
     public static final class string {
         public static final int app_name=0x7f030000;
+        public static final int common_please_choose=0x7f030001;
     }
     public static final class styleable {
         /** Attributes that can be used with a AbstractWheelView.

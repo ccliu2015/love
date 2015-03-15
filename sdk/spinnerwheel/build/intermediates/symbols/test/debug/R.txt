@@ -1,0 +1,32 @@
+int attr abstractWheelViewStyle 0x7f010000
+int attr isAllVisible 0x7f010002
+int attr isCyclic 0x7f010009
+int attr itemOffsetPercent 0x7f010003
+int attr itemsDimmedAlpha 0x7f010008
+int attr itemsPadding 0x7f010004
+int attr selectionDivider 0x7f010007
+int attr selectionDividerActiveAlpha 0x7f010006
+int attr selectionDividerDimmedAlpha 0x7f010005
+int attr selectionDividerHeight 0x7f01000b
+int attr selectionDividerWidth 0x7f01000a
+int attr visibleItems 0x7f010001
+int drawable ic_launcher 0x7f020000
+int drawable wheel_bg_hor 0x7f020001
+int drawable wheel_bg_ver 0x7f020002
+int drawable wheel_val 0x7f020003
+int string app_name 0x7f030000
+int string common_please_choose 0x7f030001
+int[] styleable AbstractWheelView { 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009 }
+int styleable AbstractWheelView_isAllVisible 1
+int styleable AbstractWheelView_isCyclic 8
+int styleable AbstractWheelView_itemOffsetPercent 2
+int styleable AbstractWheelView_itemsDimmedAlpha 7
+int styleable AbstractWheelView_itemsPadding 3
+int styleable AbstractWheelView_selectionDivider 6
+int styleable AbstractWheelView_selectionDividerActiveAlpha 5
+int styleable AbstractWheelView_selectionDividerDimmedAlpha 4
+int styleable AbstractWheelView_visibleItems 0
+int[] styleable WheelHorizontalView { 0x7f01000a }
+int styleable WheelHorizontalView_selectionDividerWidth 0
+int[] styleable WheelVerticalView { 0x7f01000b }
+int styleable WheelVerticalView_selectionDividerHeight 0

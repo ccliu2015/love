@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/D:/GitRepository/love/love/sdk/spinnerwheel/build/intermediates/bundles/debug/res/values/values.xml -->
+    <eat-comment/>
+    <attr format="reference" name="abstractWheelViewStyle"/>
+    <declare-styleable name="AbstractWheelView"><attr format="integer" name="visibleItems"/><attr format="boolean" name="isAllVisible"/><attr format="integer" name="itemOffsetPercent"/><attr format="dimension" name="itemsPadding"/><attr format="integer" name="selectionDividerDimmedAlpha"/><attr format="integer" name="selectionDividerActiveAlpha"/><attr format="reference" name="selectionDivider"/><attr format="integer" name="itemsDimmedAlpha"/><attr format="boolean" name="isCyclic"/></declare-styleable>
+    <declare-styleable name="WheelHorizontalView"><attr format="dimension" name="selectionDividerWidth"/></declare-styleable>
+    <declare-styleable name="WheelVerticalView"><attr format="dimension" name="selectionDividerHeight"/></declare-styleable>
+    <string name="app_name">spinnerwheel</string>
+    <string name="common_please_choose">请选择</string>
+</resources>

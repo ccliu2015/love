@@ -9,8 +9,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-@EActivity(R.layout.activity_show_image)
-public class ShowImageActivity extends Activity {
+@EActivity(R.layout.activity_image_show)
+public class ImageShowActivity extends Activity {
 
     @ViewById(R.id.id_showImage)
 	public ImageView mImageView;

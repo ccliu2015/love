@@ -11,12 +11,10 @@ import android.widget.TextView;
 
 import com.wisedu.scc.love.LoginActivity_;
 import com.wisedu.scc.love.R;
-import com.wisedu.scc.love.application.LoveApplication;
 import com.wisedu.scc.love.sqlite.ModelFactory;
 import com.wisedu.scc.love.sqlite.SqliteHelper;
 import com.wisedu.scc.love.sqlite.model.Login;
 
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
 @EFragment

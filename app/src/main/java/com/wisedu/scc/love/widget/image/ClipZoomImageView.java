@@ -242,7 +242,7 @@ public class ClipZoomImageView extends ImageView implements
                         if (rectF.width() <= getWidth() - mHorizontalPadding * 2) {
                             dx = 0;
                         }
-                        // 如果高度小雨屏幕高度，则禁止上下移动
+                        // 如果高度小于屏幕高度，则禁止上下移动
                         if (rectF.height() <= getHeight() - mVerticalPadding * 2) {
                             dy = 0;
                         }

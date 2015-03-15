@@ -1,7 +1,5 @@
 package com.wisedu.scc.love.fragment;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,10 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wisedu.scc.love.R;
-import com.wisedu.scc.love.ShowImageActivity_;
-import com.wisedu.scc.love.widget.image.ClipImageLayout;
-
-import java.io.ByteArrayOutputStream;
 
 public class MainTabFragment extends Fragment {
 
@@ -30,7 +24,7 @@ public class MainTabFragment extends Fragment {
     }
 
     public void doCut() {
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -42,14 +36,14 @@ public class MainTabFragment extends Fragment {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
                     Intent intent = new Intent(MainTabFragment.this.getActivity(),
-                            ShowImageActivity_.class);
+                            ImageShowActivity_.class);
                     intent.putExtra("bitmap", bytes);
                     startActivity(intent);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
     }
 
 }

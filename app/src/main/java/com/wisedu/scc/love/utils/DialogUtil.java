@@ -8,6 +8,9 @@ import com.wisedu.scc.love.widget.dialog.MenuDialog;
 import com.wisedu.scc.love.widget.dialog.MenuDialog.OnMenuClick;
 import com.wisedu.scc.love.widget.dialog.UpdaterDialog;
 
+/**
+ * 对话框工具
+ */
 public class DialogUtil {
 
 	static Dialog mDialog = null;

@@ -4,18 +4,27 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.wisedu.scc.love.base.BaseActivity;
+import com.wisedu.scc.love.config.Constants;
 import com.wisedu.scc.love.sqlite.ModelFactory;
 import com.wisedu.scc.love.sqlite.SqlBuilder;
 import com.wisedu.scc.love.sqlite.SqliteHelper;
 import com.wisedu.scc.love.sqlite.model.User;
 import com.wisedu.scc.love.utils.CommonUtil;
+import com.wisedu.scc.love.utils.EnvironmentUtil;
 import com.wisedu.scc.love.utils.RegExpUtil;
+import com.wisedu.scc.love.utils.file.FileHelper;
+import com.wisedu.scc.love.widget.window.SelectPicPopupWindow;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -23,8 +32,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 
 /**
  * Created by JZ on 2015/3/9.
@@ -34,10 +42,15 @@ public class RegisterActivity extends BaseActivity {
 
     private String mPhotoPath;
     private File mPhotoFile;
+    private SelectPicPopupWindow popWindow;
     public final static int CAMERA_RESULT = 8888;
+    public final static int PHOTO_RESULT = 9999;
 
     @Bean
     public SqliteHelper sqliteHelper;
+
+    @ViewById(R.id.main)
+    public RelativeLayout layout;
 
     @ViewById
     public ImageView avatar;
@@ -97,21 +110,65 @@ public class RegisterActivity extends BaseActivity {
                 new User(avatar, nickName, location, phone, psw));
     }
 
+    /**
+     * 拍照和选择图片的底部弹出框
+     */
     @Click(R.id.avatar)
     public void captureAvatar(){
+        // 实例化SelectPicPopupWindow
+        popWindow = new SelectPicPopupWindow(RegisterActivity.this, itemsOnClick);
+        // 设置PopupWindow在layout中显示的位置
+        popWindow.showAtLocation(layout, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+    }
+
+    /**
+     *  为弹出窗口实现监听类
+     */
+    private OnClickListener itemsOnClick = new OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            popWindow.dismiss();
+            switch (v.getId()) {
+                case R.id.btn_take_photo:
+                    takePhoto();
+                    break;
+                case R.id.btn_pick_photo:
+                    pickPhoto();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 打开拍照界面
+     */
+    private void takePhoto(){
         try {
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            mPhotoPath = "mnt/sdcard/DCIM/Camera/" + getPhotoFileName();
+            mPhotoPath = EnvironmentUtil.getExternalPhotoSavePath(
+                    FileHelper.IMG_DIR).concat(getPhotoFileName());
             mPhotoFile = new File(mPhotoPath);
             if (!mPhotoFile.exists()) {
-                mPhotoFile.createNewFile();
+                    mPhotoFile.createNewFile();
             }
             intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(mPhotoFile));
-                startActivityForResult(intent, CAMERA_RESULT);
-        } catch (Exception e) {
+                    Uri.fromFile(mPhotoFile));
+            startActivityForResult(intent, CAMERA_RESULT);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 选择照片
+     */
+    private void pickPhoto(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PHOTO_RESULT);
     }
 
     /**
@@ -131,9 +188,22 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_RESULT) {
-            Bitmap bitmap = BitmapFactory.decodeFile(mPhotoPath, null);
-            avatar.setImageBitmap(bitmap);
+        try{
+            Intent intent = new Intent(RegisterActivity.this, ImageCutActivity_.class);
+            Bundle mBundle = new Bundle();
+            if (requestCode == CAMERA_RESULT) {
+                mBundle.putString(Constants.TYPE, Constants.TAKE);
+                mBundle.putString("path", mPhotoPath);
+            } else if(requestCode == PHOTO_RESULT){
+                // 读取uri所在的图片
+                Uri uri = data.getData();
+                mBundle.putString(Constants.TYPE, Constants.PICK);
+                mBundle.putParcelable("uri", uri);
+            }
+            intent.putExtras(mBundle);
+            startActivity(intent);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

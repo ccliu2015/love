@@ -258,7 +258,7 @@ public class BitmapUtil {
 	}
 
 	public static File getImageFile(Context context) {
-		File dir = EnviromentUtil.getImageDirectory(context);
+		File dir = EnvironmentUtil.getImageDirectory(context);
 		File out = new File(dir, generalFileName());
 		return out;
 	}
@@ -270,7 +270,7 @@ public class BitmapUtil {
 	}
 
 	public static Uri getImageCropUri(Context context) {
-		File file = EnviromentUtil.getImageDirectory(context);
+		File file = EnvironmentUtil.getImageDirectory(context);
 		File dir = new File(file.getAbsolutePath() + "/" + "crop");
 		File out = new File(dir, generalFileName());
 		return Uri.fromFile(out);

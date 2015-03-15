@@ -21,7 +21,8 @@
         <activity android:name=".MainActivity_"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
             ></activity>
-        <activity android:name=".ShowImageActivity_"></activity>
+        <activity android:name=".ImageCutActivity_"></activity>、
+        <activity android:name=".ImageShowActivity_"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

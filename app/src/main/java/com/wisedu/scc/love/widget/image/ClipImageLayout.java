@@ -2,6 +2,7 @@ package com.wisedu.scc.love.widget.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.RelativeLayout;
@@ -17,30 +18,28 @@ public class ClipImageLayout extends RelativeLayout {
 	private ClipZoomImageView mZoomImageView;
     /**图片边框控件*/
 	private ClipImageBorderView mClipImageView;
-
-	/**
-     * 水平内边距
-	 * TODO 这里测试，直接写死了大小，真正使用过程中，可以提取为自定义属性
-	 */
+    /**要处理的图片*/
+    private Drawable mDrawable = null;
+	/** 水平内边距, 默认为20 */
 	private int mHorizontalPadding = 20;
 
 	public ClipImageLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
+        /**初始化VIEW*/
 		mZoomImageView = new ClipZoomImageView(context);
 		mClipImageView = new ClipImageBorderView(context);
 		android.view.ViewGroup.LayoutParams layoutParams = new LayoutParams(
 				android.view.ViewGroup.LayoutParams.MATCH_PARENT,
 				android.view.ViewGroup.LayoutParams.MATCH_PARENT);
-		/**
-		 * TODO 这里测试，直接写死了图片，真正使用过程中，可以提取为自定义属性
-		 */
-		mZoomImageView.setImageDrawable(getResources().getDrawable(
-				R.drawable.ic_launcher));
-		
+
+        /**设置图片*/
+		mZoomImageView.setImageDrawable(getDrawable());
+
+        /**将VIEW加入Layout*/
 		this.addView(mZoomImageView, layoutParams);
 		this.addView(mClipImageView, layoutParams);
 
-		// 计算padding的px
+		/**计算padding的px*/
 		mHorizontalPadding = (int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP, mHorizontalPadding, getResources()
 						.getDisplayMetrics());
@@ -54,6 +53,20 @@ public class ClipImageLayout extends RelativeLayout {
 	public void setHorizontalPadding(int mHorizontalPadding) {
 		this.mHorizontalPadding = mHorizontalPadding;
 	}
+
+    /**
+     * 对外公布设置边距的方法,单位为dp
+     */
+    public void setDrawable(Drawable drawable) {
+        this.mDrawable = drawable;
+    }
+
+    /**
+     * 对外公布设置边距的方法,单位为dp
+     */
+    public Drawable getDrawable() {
+        return this.mDrawable;
+    }
 
 	/**
 	 * 裁切图片
