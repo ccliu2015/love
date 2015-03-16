@@ -15,6 +15,10 @@ public class DialogUtil {
 
 	static Dialog mDialog = null;
 
+    /**
+     * 显示进度对话框
+     * @param context
+     */
 	public static void showProgressDialog(Context context) {
 		ProgressUtil.showProgress(context);
 	}
@@ -70,6 +74,14 @@ public class DialogUtil {
 		return dialog;
 	}
 
+    /**
+     * 更新对话框
+     * @param context
+     * @param title
+     * @param positiveButtonText
+     * @param positiveListener
+     * @return
+     */
 	public static UpdaterDialog showUpdaterDialog(Context context,
 			String title, String positiveButtonText,
 			DialogInterface.OnClickListener positiveListener) {
@@ -81,6 +93,9 @@ public class DialogUtil {
 		return dialog;
 	}
 
+    /**
+     * 隐藏对话框
+     * */
 	public static void dismissMenuDialog() {
 		dismissListDialog();
 	}

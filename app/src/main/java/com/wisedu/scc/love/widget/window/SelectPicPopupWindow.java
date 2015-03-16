@@ -26,7 +26,7 @@ public class SelectPicPopupWindow extends PopupWindow {
         super(context);  
         LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        mMenuView = inflater.inflate(R.layout.window_pop_dialog, null);
+        mMenuView = inflater.inflate(R.layout.photo_select_dialog, null);
         btn_take_photo = (Button) mMenuView.findViewById(R.id.btn_take_photo);  
         btn_pick_photo = (Button) mMenuView.findViewById(R.id.btn_pick_photo);  
         btn_cancel = (Button) mMenuView.findViewById(R.id.btn_cancel);  

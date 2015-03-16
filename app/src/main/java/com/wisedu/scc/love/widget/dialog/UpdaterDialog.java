@@ -20,10 +20,7 @@ import android.widget.TextView;
 import com.wisedu.scc.love.R;
 
 /**
- * 
  * 提供升级与强制升级的对话框
- * 
- * @author DOGN Shengdong
  */
 public class UpdaterDialog extends Dialog {
 

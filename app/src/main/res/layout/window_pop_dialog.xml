@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="拍照"
-        android:background="@drawable/btn_style_alert_dialog_button"
+        android:background="@drawable/love_green_btn"
         android:textStyle="bold"
          />
 
@@ -38,7 +38,7 @@
          android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="从相册选择"
-         android:background="@drawable/btn_style_alert_dialog_button"
+         android:background="@drawable/love_green_btn"
          android:textStyle="bold"
          />
 

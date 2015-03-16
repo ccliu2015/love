@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class Login implements Serializable {
 
+    private String userId;
+    private String avatar;
     private String phone;
     private String psw;
     private String status; // 登录状态，on代表已登录，off代表未登录
@@ -14,11 +16,30 @@ public class Login implements Serializable {
 
     public Login(){}
 
-    public Login(String phone, String psw, String status, String lastTime){
+    public Login(String userId, String avatar, String phone, String psw,
+                 String status, String lastTime){
+        this.userId = userId;
+        this.avatar = avatar;
         this.phone = phone;
         this.psw = psw;
         this.status = status;
         this.lastTime = lastTime;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {

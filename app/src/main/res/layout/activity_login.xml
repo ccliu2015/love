@@ -26,23 +26,22 @@
         android:weightSum="1">
         <TextView
             android:id="@+id/phoneText"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="手机"
             android:textSize="16dp"
             android:gravity="center"
-            android:layout_marginRight="20dp"
             />
         <EditText
             android:id="@+id/phoneEdit"
             android:layout_height="30dp"
             android:layout_width="100dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:layout_alignBottom="@+id/phoneText"
             android:layout_toRightOf="@+id/phoneText"
             android:layout_alignParentTop="true"
+            android:background="@drawable/input_style"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             />
     </RelativeLayout>
 
@@ -56,23 +55,23 @@
         android:weightSum="1">
         <TextView
             android:id="@+id/pswText"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="密码"
             android:textSize="16dp"
             android:gravity="center"
-            android:layout_marginRight="20dp"
             />
         <EditText
             android:inputType="textPassword"
             android:id="@+id/pswEdit"
             android:layout_height="30dp"
             android:layout_width="100dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:layout_alignBottom="@+id/pswText"
             android:layout_toRightOf="@+id/pswText"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
+            android:background="@drawable/input_style"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
@@ -83,35 +82,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pswLayout"
         android:weightSum="1"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal">
         <Button
             android:id="@+id/loginButton"
             android:layout_height="40dp"
-            android:layout_width="10dp"
+            android:layout_width="100dp"
             android:text="登录"
             android:background="@drawable/love_green_btn"
             android:gravity="center"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="60dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-
-    <!--注册按钮-->
-    <RelativeLayout
-        android:id="@+id/registerLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:layout_below="@+id/loginLayout"
-        android:layout_alignParentBottom="true">
+            android:layout_marginTop="10dp"
+            />
         <Button
             android:id="@+id/registerButton"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="注册" ></Button>
+            android:background="@drawable/love_green_btn"
+            android:text="注册"
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"></Button>
     </RelativeLayout>
 
 </RelativeLayout>

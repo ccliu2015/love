@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="10dp" android:paddingRight="10dp"
+    android:paddingTop="5dp" android:paddingBottom="5dp"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:src="@drawable/avatar_default"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:id="@+id/userName"
+        android:text="这里要限制长度"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textSize="16dp"
+        android:textColor="#ff000000"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/avatar"/>
+
+    <TextView
+        android:id="@+id/message"
+        android:text="这里要限制长度"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/avatar"
+        android:textColor="#ff4d4d4d"
+        android:layout_below="@+id/userName"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:text="3月14日"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textSize="12dp"
+        android:textColor="#ff4d4d4d"
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/number"
+        android:text="10+"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/time"
+        android:background="@drawable/text_style"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

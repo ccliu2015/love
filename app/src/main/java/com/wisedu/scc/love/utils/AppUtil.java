@@ -24,13 +24,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
- * @author DONG Shengdong
- * @version 0.0.1
- *
+ * 应用相关工具方法
  */
 public final class AppUtil {
 
+    /**
+     * 从AndroidManifest.xml收集到的Application的信息
+     * @param context
+     * @return
+     */
 	public static Bundle getMeta(Context context) {
 		try {
 			ApplicationInfo info = context.getPackageManager()
@@ -44,28 +46,59 @@ public final class AppUtil {
 		return Bundle.EMPTY;
 	}
 
+    /**
+     * 获取应用某属性的字符串值
+     * @param context
+     * @param key
+     * @return
+     */
 	public static String getMetaString(Context context, String key) {
 		return getMeta(context).getString(key);
 	}
+
 
 	public static String getMetaString(Context context, String key, String def) {
 		String value = getMeta(context).getString(key);
 		return TextUtils.isEmpty(value) ? def : value;
 	}
 
+    /**
+     * 获取应用某属性的数字值
+     * @param context
+     * @param key
+     * @return
+     */
 	public static int getMetaInt(Context context, String key) {
 		return getMeta(context).getInt(key);
 	}
 
+    /**
+     * 获取应用某属性的布尔值
+     * @param context
+     * @param key
+     * @return
+     */
 	public static boolean getMetaBool(Context context, String key) {
 		return getMeta(context).getBoolean(key);
 	}
 
+    /**
+     * 获取strings.xml中的值
+     * @param context
+     * @param key
+     * @return
+     */
 	public static String getConfigString(Context context, String key) {
 		int id = getResId(context, key, "string");
 		return id > 0 ? context.getResources().getString(id) : null;
 	}
 
+    /**
+     * 获取strings.xml中的值，def为替代值
+     * @param context
+     * @param key
+     * @return
+     */
 	public static String getConfigString(Context context, String key, String def) {
 		int id = getResId(context, key, "string");
 		return id > 0 ? context.getResources().getString(id, def) : def;
@@ -109,46 +142,25 @@ public final class AppUtil {
 		return map;
 	}
 
-	public static String getImei(Context context) {
+   /**
+    * 获取设备ID
+    */
+	public static String getDeviceId(Context context) {
 		TelephonyManager telephonyManager = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		return telephonyManager.getDeviceId().toLowerCase();
 	}
 
-	public static String getAppVersion(Context context) {
-		PackageManager packageManager = context.getPackageManager();
-		PackageInfo packInfo;
-		try {
-			packInfo = packageManager.getPackageInfo(context.getPackageName(),
-					0);
-			String version = packInfo.versionName;
-			return version;
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-			return "";
-		}
-	}
-
-    public final static String getApplicationName(Context context) {
-        PackageManager packageManager = null;
-        ApplicationInfo applicationInfo = null;
-        try {
-            packageManager = context.getPackageManager();
-            applicationInfo = packageManager.getApplicationInfo(
-                    context.getPackageName(), 0);
-        } catch (NameNotFoundException e) {
-            applicationInfo = null;
-        }
-        String applicationName = (String) packageManager
-                .getApplicationLabel(applicationInfo);
-        return applicationName;
-    }
-
+    /**
+     * 获取资源ID
+     * @param context
+     * @param key
+     * @param type
+     * @return
+     */
 	private static int getResId(Context context, String key, String type) {
 		return context.getResources().getIdentifier("app_" + key, type,
 				context.getPackageName());
 	}
 
-	private AppUtil() {
-	}
 }

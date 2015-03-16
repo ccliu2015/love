@@ -14,12 +14,7 @@ import android.widget.TextView;
 import com.wisedu.scc.love.R;
 
 /**
- * 
- * CustomDialog:[自定义dialog]
- * 通过builder构建相关元素：Title, Message, positiveButton, nagetiveButton,
- * 如果Title不设置，默认是"温馨提示"
- * 
- * @author David.Yu
+ * 自定义对话框
  */
 public class CustomDialog extends Dialog {
 

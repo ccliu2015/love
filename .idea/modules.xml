@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/love.iml" filepath="$PROJECT_DIR$/love.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdk/pulltorefresh/pulltorefresh.iml" filepath="$PROJECT_DIR$/sdk/pulltorefresh/pulltorefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/sdk/spinnerwheel/spinnerwheel.iml" filepath="$PROJECT_DIR$/sdk/spinnerwheel/spinnerwheel.iml" />
     </modules>
   </component>

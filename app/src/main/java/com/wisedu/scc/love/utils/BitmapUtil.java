@@ -17,7 +17,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.wisedu.scc.love.utils.file.IOUtil;
+import com.wisedu.scc.love.utils.IOUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,17 +30,36 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Bitmap处理工具
+ */
 public class BitmapUtil {
-	public static final int COMPRESS_JPEG_QUALITY = 70;
 
+    /*压缩图片质量*/
+	public static final int COMPRESS_JPEG_QUALITY = 70;
+    /*最大宽度*/
 	public final static int MAX_WIDTH = 800;
+    /*最大高度*/
 	public final static int MAX_HEIGHT = 1024;
 
+    /**
+     * 重设大小
+     * @param input
+     * @param destWidth
+     * @param destHeight
+     * @return
+     * @throws OutOfMemoryError
+     */
 	public static Bitmap resizeBitmap(Bitmap input, int destWidth,
 			int destHeight) throws OutOfMemoryError {
 		return resizeBitmap(input, destWidth, destHeight, 0);
 	}
 
+    /**
+     * 配置BitMapFactory
+     * @param options
+     * @param config
+     */
 	public static void configOptions(Options options,
 			Bitmap.Config config) {
 		options.inPreferredConfig = config;
@@ -48,7 +67,7 @@ public class BitmapUtil {
 
 	public static void sampleOptions(Options options,
 			Object object) {
-		int width = DecodeUtils.getWidth(object);
+		int width = DecodeUtil.getWidth(object);
 		int sample = BitmapUtil.getSampleSize(width, MAX_WIDTH);
 		Log.v("BitmapUtils", "sample:" + sample);
 		options.inSampleSize = sample;
@@ -58,9 +77,15 @@ public class BitmapUtil {
 		return (int) Math.ceil(width / screenWidth);
 	}
 
+    /**
+     * 解码
+     * @param object
+     * @param options
+     * @return
+     */
 	public static Bitmap[] decodeBitmaps(Object object, Options options) {
-		int width = DecodeUtils.getWidth(object);
-		int height = DecodeUtils.getHeight(object);
+		int width = DecodeUtil.getWidth(object);
+		int height = DecodeUtil.getHeight(object);
 
 		final Bitmap[] bitmaps;
 		if (height % 1024 == 0) {
@@ -73,13 +98,13 @@ public class BitmapUtil {
 		while (true) {
 			Bitmap localBitmap = null;
 			if (index < bitmaps.length - 1) {
-				localBitmap = DecodeUtils.decodeRegion(object, new Rect(0,
-						index * MAX_HEIGHT, width, MAX_HEIGHT * (index + 1)),
-						options);
+				localBitmap = DecodeUtil.decodeRegion(object, new Rect(0,
+                                index * MAX_HEIGHT, width, MAX_HEIGHT * (index + 1)),
+                        options);
 				bitmaps[index] = localBitmap;
 			} else if (index == bitmaps.length - 1) {
-				localBitmap = DecodeUtils.decodeRegion(object, new Rect(0,
-						index * MAX_HEIGHT, width, height), options);
+				localBitmap = DecodeUtil.decodeRegion(object, new Rect(0,
+                        index * MAX_HEIGHT, width, height), options);
 				bitmaps[index] = localBitmap;
 				break;
 			} else {
@@ -91,6 +116,17 @@ public class BitmapUtil {
 		return bitmaps;
 	}
 
+    /**
+     * 解码Bitmap
+     * @param context
+     * @param uri
+     * @param options
+     * @param maxW
+     * @param maxH
+     * @param orientation
+     * @param pass
+     * @return
+     */
 	static Bitmap decodeBitmap(Context context, Uri uri,
 			Options options, int maxW, int maxH, int orientation,
 			int pass) {
@@ -130,6 +166,12 @@ public class BitmapUtil {
 		return bitmap;
 	}
 
+    /**
+     * 将Uri转换为输入流
+     * @param context
+     * @param uri
+     * @return
+     */
 	public static InputStream openInputStream(Context context, Uri uri) {
 		if (null == uri)
 			return null;
@@ -145,7 +187,12 @@ public class BitmapUtil {
 		return stream;
 	}
 
-	static InputStream openFileInputStream(String path) {
+    /**
+     * 将路径转换为输入流
+     * @param path
+     * @return
+     */
+    public static InputStream openFileInputStream(String path) {
 		try {
 			return new FileInputStream(path);
 		} catch (FileNotFoundException e) {
@@ -154,7 +201,12 @@ public class BitmapUtil {
 		return null;
 	}
 
-	static InputStream openRemoteInputStream(Uri uri) {
+    /**
+     * 将远程文件转换为输入流
+     * @param uri
+     * @return
+     */
+	public static InputStream openRemoteInputStream(Uri uri) {
 		URL finalUrl;
 		try {
 			finalUrl = new URL(uri.toString());
@@ -191,7 +243,13 @@ public class BitmapUtil {
 		return null;
 	}
 
-	static InputStream openContentInputStream(Context context, Uri uri) {
+    /**
+     * 打开ContentProvider中的Uri
+     * @param context
+     * @param uri
+     * @return
+     */
+	public static InputStream openContentInputStream(Context context, Uri uri) {
 		try {
 			return context.getContentResolver().openInputStream(uri);
 		} catch (FileNotFoundException e) {
@@ -200,6 +258,15 @@ public class BitmapUtil {
 		return null;
 	}
 
+    /**
+     * 重设大小，并同时转向
+     * @param input
+     * @param destWidth
+     * @param destHeight
+     * @param rotation
+     * @return
+     * @throws OutOfMemoryError
+     */
 	public static Bitmap resizeBitmap(Bitmap input, int destWidth,
 			int destHeight, int rotation) throws OutOfMemoryError {
 		int dstWidth = destWidth;
@@ -253,30 +320,85 @@ public class BitmapUtil {
 		return input;
 	}
 
+    /**
+     * 生成图片名称
+     * @return
+     */
 	public static String generalFileName() {
-		return String.valueOf(System.currentTimeMillis()) + ".jpg";
+		return String.valueOf(System.currentTimeMillis()).concat(".jpg");
 	}
 
+    /**
+     * 生成一个图片文件
+     * @param context
+     * @return
+     */
 	public static File getImageFile(Context context) {
 		File dir = EnvironmentUtil.getImageDirectory(context);
 		File out = new File(dir, generalFileName());
 		return out;
 	}
 
+    /**
+     * 生成一个图片文件
+     */
+    public static File getImageFile(Context context, String fileName) {
+        File dir = EnvironmentUtil.getImageDirectory(context);
+        File out = new File(dir, fileName);
+        return out;
+    }
+
+    /**
+     * 获取一个图片的Uri
+     * @param context
+     * @return
+     */
 	public static Uri getImageFileUri(Context context) {
 		File out = getImageFile(context);
 		Uri uri = Uri.fromFile(out);
 		return uri;
 	}
 
+    /**
+     * 获取一个图片的Uri
+     * @param context
+     * @return
+     */
+    public static Uri getImageFileUri(Context context, String fileName) {
+        File out = getImageFile(context, fileName);
+        Uri uri = Uri.fromFile(out);
+        return uri;
+    }
+
+    /**
+     * 获取一个图片地址
+     * @param context
+     * @return
+     */
+    public static String getImagePath(Context context, String fileName) {
+        File dir = EnvironmentUtil.getImageDirectory(context);
+        String path = dir.getAbsolutePath().concat("/").concat(fileName);
+        return path;
+    }
+
+    /**
+     * 生成图片剪切地址
+     * @param context
+     * @return
+     */
 	public static Uri getImageCropUri(Context context) {
 		File file = EnvironmentUtil.getImageDirectory(context);
 		File dir = new File(file.getAbsolutePath() + "/" + "crop");
 		File out = new File(dir, generalFileName());
 		return Uri.fromFile(out);
-
 	}
 
+    /**
+     * 保存Bitmap
+     * @param context
+     * @param bitmap
+     * @return
+     */
 	public static File saveBitmap(Context context, Bitmap bitmap) {
 		File file = getImageFile(context);
 		saveBitmap(file, bitmap);
@@ -284,8 +406,7 @@ public class BitmapUtil {
 	}
 
 	/**
-	 * 生成圆形图片
-	 *
+	 * 生成圆角图片
 	 * @param bitmap
 	 * @return
 	 */
@@ -312,6 +433,13 @@ public class BitmapUtil {
 		return output;
 	}
 
+    /**
+     * 生成目标大小的圆角图片
+     * @param bitmap
+     * @param targetWidth
+     * @param targetHeight
+     * @return
+     */
 	public static Bitmap getCircularBitmap(Bitmap bitmap, int targetWidth, int targetHeight) {
 	    Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
 	            targetHeight,Bitmap.Config.ARGB_8888);
@@ -333,11 +461,8 @@ public class BitmapUtil {
 		return targetBitmap;
 	}
 
-
-
 	/**
 	 * 保存图片
-	 *
 	 * @param path
 	 * @param bitmap
 	 */
@@ -347,6 +472,12 @@ public class BitmapUtil {
 		return file;
 	}
 
+    /**
+     * 保存PNG图片
+     * @param path
+     * @param bitmap
+     * @return
+     */
 	public static File savePngBitmap(String path, Bitmap bitmap) {
 		File file = new File(path);
 		FileOutputStream fos = null;
@@ -365,8 +496,7 @@ public class BitmapUtil {
 	}
 
 	/**
-	 * 保存图片
-	 *
+	 * 保存JPEG图片
 	 * @param file
 	 * @param bitmap
 	 */
@@ -387,13 +517,12 @@ public class BitmapUtil {
 	}
 
 	/**
-	 * 下载图片
-	 *
+	 * 下载图片，得到字节数组
 	 * @param path
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] getImage(String path) throws Exception {
+	public static byte[] getURLImage(String path) throws Exception {
 		URL url = new URL(path);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setConnectTimeout(5 * 1000);
@@ -422,13 +551,19 @@ public class BitmapUtil {
 		return outStream.toByteArray();
 	}
 
+    /**
+     * 是否超大图片
+     * @param context
+     * @param uri
+     * @return
+     */
 	public static boolean isSuperLongBitmap(Context context, Uri uri){
-		InputStream inputStream = DecodeUtils.openInputStream(context, uri);
+		InputStream inputStream = DecodeUtil.openInputStream(context, uri);
 		int[] imageSize = new int[2];
 
 		Options options = new Options();
 		options.inJustDecodeBounds = true;
-		if (DecodeUtils.decodeImageBounds(inputStream, imageSize, options)) {
+		if (DecodeUtil.decodeImageBounds(inputStream, imageSize, options)) {
 			int width = imageSize[0];
 			int height = imageSize[1];
 			float scale = height/width;
@@ -436,9 +571,15 @@ public class BitmapUtil {
 		}
 		return false;
 	}
-	
+
+    /**
+     * 是否GIF图片
+     * @param uri
+     * @return
+     */
 	public static boolean isGifBitmap(String uri){
 		String extension = MimeTypeMap.getFileExtensionFromUrl(uri);
 		return "gif".equalsIgnoreCase(extension);
 	}
+
 }

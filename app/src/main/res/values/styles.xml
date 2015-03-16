@@ -71,4 +71,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="SpinnerDialogAnim">
+        <item name="@android:windowEnterAnimation">@anim/slide_up_in</item>
+        <item name="@android:windowExitAnimation">@anim/slide_down_out</item>
+    </style>
+
 </resources>

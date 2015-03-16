@@ -4,7 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 
 /**
- * Created by denny on 1/20/15.
+ * 时间对话框
  */
 public class DatePickDialogCancel extends DatePickerDialog {
 

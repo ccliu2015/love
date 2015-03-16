@@ -14,7 +14,7 @@
             android:id="@+id/avatar"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="#ff6eddcd"/>
+            android:src="@drawable/avatar_default"/>
     </LinearLayout>
 
     <!--昵称-->
@@ -39,6 +39,7 @@
             android:layout_height="40dp"
             android:layout_width="10dp"
             android:layout_weight="0.9"
+            android:background="@drawable/input_style"
             />
     </LinearLayout>
 
@@ -64,6 +65,7 @@
             android:layout_height="40dp"
             android:layout_width="10dp"
             android:layout_weight="0.9"
+            android:background="@drawable/input_style"
             />
     </LinearLayout>
 
@@ -89,6 +91,7 @@
             android:layout_height="40dp"
             android:layout_width="10dp"
             android:layout_weight="0.9"
+            android:background="@drawable/input_style"
             />
     </LinearLayout>
 
@@ -115,6 +118,7 @@
             android:layout_height="40dp"
             android:layout_width="10dp"
             android:layout_weight="0.9"
+            android:background="@drawable/input_style"
             />
     </LinearLayout>
 
@@ -125,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pswLayout"
         android:weightSum="1"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal">
         <Button
             android:id="@+id/registerButton"

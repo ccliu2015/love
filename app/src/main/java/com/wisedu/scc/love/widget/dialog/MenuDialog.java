@@ -15,6 +15,9 @@ import android.widget.LinearLayout;
 
 import com.wisedu.scc.love.R;
 
+/**
+ * 菜单对话框
+ */
 public class MenuDialog extends Dialog implements
 		View.OnClickListener {
 

@@ -1,0 +1,6 @@
+apply plugin: 'android-library'
+apply from: "${rootDir}/script/env.gradle"
+
+dependencies {
+    compile "com.android.support:support-v4:$SUPPORT_VERSION"
+}

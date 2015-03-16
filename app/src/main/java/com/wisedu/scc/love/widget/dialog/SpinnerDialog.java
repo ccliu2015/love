@@ -1,4 +1,3 @@
-/*
 package com.wisedu.scc.love.widget.dialog;
 
 import android.app.Dialog;
@@ -11,14 +10,16 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.wisedu.scc.love.R;
+
 import java.util.List;
 
-*/
-/**
- * Created by chenupt@gmail.com on 12/5/14.
- * Description :
- *//*
+import antistatic.spinnerwheel.WheelVerticalView;
+import antistatic.spinnerwheel.adapters.ArrayWheelAdapter;
 
+/**
+ * 旋转等待对话框
+ */
 public class SpinnerDialog extends Dialog{
 
     WheelVerticalView wheelVerticalView;
@@ -150,4 +151,3 @@ public class SpinnerDialog extends Dialog{
         }
     }
 }
-*/

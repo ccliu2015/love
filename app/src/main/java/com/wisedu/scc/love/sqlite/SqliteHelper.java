@@ -142,7 +142,7 @@ public class SqliteHelper {
         dealTableFirst(tableName);
 
         SQLiteDatabase db = mOpenHelper.getReadableDatabase();
-        Cursor cursor = db.query(tableName,null, whereClause, whereArgs, null, null, null);
+        Cursor cursor = db.query(tableName, null, whereClause, whereArgs, null, null, null);
         try {
             return (null!=cursor&&cursor.getCount()>0);
         } catch (Exception e) {
@@ -200,9 +200,8 @@ public class SqliteHelper {
                 String sql = "select count(0) from sqlite_master"
                         + " where type ='table' and name ='" + table.trim() + "' ";
                 Cursor cursor = db.rawQuery(sql, null);
-                if (null == cursor || cursor.getCount() == 0) {
-                    String createSql = SqlBuilder.geneSql(table);
-                    db.execSQL(createSql);
+                if (null == cursor || !(cursor.moveToNext()) || cursor.getInt(0)<=0) {
+                    reCreateTable(table);
                 } else {
                     cursor.close();
                 }
