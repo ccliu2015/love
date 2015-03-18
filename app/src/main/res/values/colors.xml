@@ -24,4 +24,8 @@
     <color name="viewfinder_mask">#60000000</color>
     <color name="possible_result_points">#c0ffff00</color>
 
+    <color name="yellow_page_search_bg">#fffffbfa</color>
+    <color name="login_form_hint">#ffb5b5b5</color>
+    <color name="yellow_light">#ffefa717</color>
+
 </resources>
