@@ -21,6 +21,10 @@
         <activity android:name=".activity.MainActivity_"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
             ></activity>
+        <activity android:name=".activity.SearchActivity_"></activity>
+        <activity android:name=".activity.AddFriendActivity_"></activity>
+        <activity android:name=".activity.ScanActivity_"></activity>
+        <activity android:name=".activity.FeedActivity_"></activity>
 
         <!--暂时未用到 begin-->
         <activity android:name=".activity.image.ImageCutActivity_"></activity>、
@@ -34,5 +38,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 </manifest>

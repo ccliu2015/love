@@ -19,4 +19,9 @@
 
     <color name="title_bar_bg">#77d2c5</color>
 
+    <!--qrcode-->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
 </resources>

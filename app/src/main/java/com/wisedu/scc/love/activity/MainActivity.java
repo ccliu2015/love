@@ -1,10 +1,12 @@
 package com.wisedu.scc.love.activity;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
@@ -19,6 +21,8 @@ import com.wisedu.scc.love.widget.icon.ChangeColorIcon;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import java.lang.reflect.Field;
@@ -27,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.activity_main)
+@OptionsMenu(R.menu.menu_main)
 public class MainActivity extends BaseFragmentActivity implements
         ViewPager.OnPageChangeListener, View.OnClickListener {
 
@@ -128,12 +133,6 @@ public class MainActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         if (positionOffset > 0) {
             ChangeColorIcon left = mTabIndicator.get(position);
@@ -196,6 +195,30 @@ public class MainActivity extends BaseFragmentActivity implements
             }
         }
         return super.onMenuOpened(featureId, menu);
+    }
+
+    /**
+     * 点击菜单执行事件
+     */
+    @OptionsItem({ R.id.action_search,R.id.action_add_friend ,R.id.action_scan ,R.id.action_feed })
+    protected void doSearch(MenuItem item) {
+        Intent intent = null;
+        switch (item.getItemId()){
+            case R.id.action_search:
+                intent = new Intent(this, SearchActivity_.class);
+                break;
+            case R.id.action_add_friend:
+                intent = new Intent(this, AddFriendActivity_.class);
+                break;
+            case R.id.action_scan:
+                intent = new Intent(this, ScanActivity_.class);
+                break;
+            case R.id.action_feed:
+                intent = new Intent(this, FeedActivity_.class);
+                break;
+        }
+        if(null != intent)
+            startActivity(intent);
     }
 
 }
