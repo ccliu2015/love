@@ -1,12 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/common_gray"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/meText"
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:text="注销登录"/>
+        android:background="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_height="90dp">
+        <ImageView
+            android:id="@+id/avatar"
+            android:src="@drawable/avatar_default"
+            android:layout_margin="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:text="闯闯"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:textColor="#ff000000"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/avatar"/>
+
+        <TextView
+            android:id="@+id/message"
+            android:text="LOVE号: CLOVET2015"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/avatar"
+            android:textColor="#ff4d4d4d"
+            android:layout_below="@+id/userName"/>
+
+        <ImageView
+            android:id="@+id/time"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/qcode"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_below="@+id/container"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/jl"
+            android:src="@drawable/ic_launcher"
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+            <TextView
+                android:layout_toRightOf="@+id/jl"
+                android:text="奖励"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_height="50dp" />
+        <ImageView
+            android:id="@+id/xc"
+            android:src="@drawable/ic_launcher"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/jl"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_alignTop="@+id/xc"
+            android:layout_toRightOf="@+id/xc"
+            android:text="相册"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="30dp" />
+        <ImageView
+            android:id="@+id/zxdl"
+            android:src="@drawable/ic_launcher"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/xc"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/out"
+            android:layout_alignTop="@+id/zxdl"
+            android:layout_toRightOf="@+id/zxdl"
+            android:text="注销登录"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="30dp" />
+    </RelativeLayout>
 
 </RelativeLayout>

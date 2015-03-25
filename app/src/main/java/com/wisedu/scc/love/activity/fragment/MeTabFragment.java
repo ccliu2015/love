@@ -29,7 +29,7 @@ public class MeTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.fragment_me, container, false);
-        textView = (TextView)view.findViewById(R.id.meText);
+        textView = (TextView)view.findViewById(R.id.out);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

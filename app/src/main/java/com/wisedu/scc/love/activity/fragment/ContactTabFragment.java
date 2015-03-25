@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,55 +13,46 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.wisedu.scc.love.R;
-import java.util.Collections;
+import com.wisedu.scc.love.widget.sortlist.CharacterParser;
+import com.wisedu.scc.love.widget.sortlist.PersonDto;
+import com.wisedu.scc.love.widget.sortlist.PinyinComparator;
+import com.wisedu.scc.love.widget.sortlist.SideBar;
+import com.wisedu.scc.love.widget.sortlist.SortListAdapter;
 
-public class ContactTabFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class ContactTabFragment extends Fragment
+        implements SideBar.OnTouchingLetterChangedListener, TextWatcher {
+
+	public ContactTabFragment() {
+	}
 
     /**
      * 页面内控件
      */
     private View layout;
-
-	public ContactTabFragment() {
-	}
+    private SideBar mSideBar;
+    private TextView mDialog;
+    private ListView mListView;
+    private EditText mSearchInput;
+    private CharacterParser characterParser;// 汉字转拼音
+    private PinyinComparator pinyinComparator;// 根据拼音来排列ListView里面的数据类
+    private List<PersonDto> sortDataList = new ArrayList<>();
+    private SortListAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layout = inflater.inflate(R.layout.fragment_contact, container, false);
-        return layout;
-    }
-
-
-    private SideBar mSideBar;
-
-    private TextView mDialog;
-
-    private ListView mListView;
-
-    private EditText mSearchInput;
-
-    private CharacterParser characterParser;// 汉字转拼音
-
-    private PinyinComparator pinyinComparator;// 根据拼音来排列ListView里面的数据类
-
-    private List<PersonDto> sortDataList = new ArrayList<PersonDto>();
-
-    private SchoolFriendMemberListAdapter mAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mListView = (ListView) findViewById(R.id.school_friend_member);
-        mSideBar = (SideBar) findViewById(R.id.school_friend_sidrbar);
-        mDialog = (TextView) findViewById(R.id.school_friend_dialog);
-        mSearchInput = (EditText) findViewById(R.id.school_friend_member_search_input);
-
+        mListView = (ListView)layout.findViewById(R.id.contact_member);
+        mSideBar = (SideBar)layout.findViewById(R.id.contact_sidebar);
+        mDialog = (TextView)layout.findViewById(R.id.contact_dialog);
+        mSearchInput = (EditText)layout.findViewById(R.id.contact_search_input);
         mSideBar.setTextView(mDialog);
         mSideBar.setOnTouchingLetterChangedListener(this);
-
         initData();
-
+        return layout;
     }
 
     /**
@@ -70,6 +62,10 @@ public class ContactTabFragment extends Fragment {
         // 实例化汉字转拼音类
         characterParser = CharacterParser.getInstance();
         pinyinComparator = new PinyinComparator();
+
+        PersonDto cuser0 = new PersonDto();
+        cuser0.setName("添加新朋友");
+        cuser0.setSortLetters("#");
 
         PersonDto cuser1 = new PersonDto();
         cuser1.setName("阿东");
@@ -111,6 +107,7 @@ public class ContactTabFragment extends Fragment {
         cuser10.setName("八戒");
         cuser10.setSortLetters("b");
 
+        sortDataList.add(cuser0);
         sortDataList.add(cuser1);
         sortDataList.add(cuser2);
         sortDataList.add(cuser3);
@@ -125,7 +122,7 @@ public class ContactTabFragment extends Fragment {
         fillData(sortDataList);
         // 根据a-z进行排序源数据
         Collections.sort(sortDataList, pinyinComparator);
-        mAdapter = new SchoolFriendMemberListAdapter(this, sortDataList);
+        mAdapter = new SortListAdapter(ContactTabFragment.this.getActivity(), sortDataList);
         mListView.setAdapter(mAdapter);
         mSearchInput.addTextChangedListener(this);
 
@@ -166,7 +163,7 @@ public class ContactTabFragment extends Fragment {
      * @param filterStr
      */
     private void filterData(String filterStr, List<PersonDto> list) {
-        List<PersonDto> filterDateList = new ArrayList<PersonDto>();
+        List<PersonDto> filterDateList = new ArrayList<>();
 
         if (TextUtils.isEmpty(filterStr)) {
             filterDateList = list;
@@ -175,7 +172,9 @@ public class ContactTabFragment extends Fragment {
             for (PersonDto sortModel : list) {
                 String name = sortModel.getName();
                 String suoxie = sortModel.getSuoxie();
-                if (name.indexOf(filterStr.toString()) != -1 || suoxie.indexOf(filterStr.toString()) != -1 || characterParser.getSelling(name).startsWith(filterStr.toString())) {
+                if (name.indexOf(filterStr.toString()) != -1 ||
+                        suoxie.indexOf(filterStr.toString()) != -1 ||
+                        characterParser.getSelling(name).startsWith(filterStr.toString())) {
                     filterDateList.add(sortModel);
                 }
             }

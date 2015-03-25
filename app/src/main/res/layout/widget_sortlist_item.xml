@@ -10,9 +10,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#F9F9F9"
-        android:paddingBottom="5dip"
-        android:paddingLeft="5dip"
-        android:paddingTop="5dip"
+        android:paddingBottom="2dip"
+        android:paddingLeft="2dip"
+        android:paddingTop="2dip"
         android:textColor="#454545" />
 
     <TextView
@@ -38,7 +38,7 @@
             android:layout_height="42dp"
             android:contentDescription="@null"
             android:scaleType="fitXY"
-            android:src="@drawable/bg_head" />
+            android:src="@drawable/avatar_default" />
 
         <TextView
             android:id="@+id/title"

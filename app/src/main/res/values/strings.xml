@@ -32,4 +32,9 @@
 
     <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
 
+    <string name="contact_search_hint">搜索</string>
+
+    <string name="feed_anno">请尽量详细描述问题，LOVE会第一时间帮您解决！</string>
+    <string name="feed_email">请输入可以联系您的QQ或邮箱</string>
+
 </resources>

@@ -28,4 +28,15 @@
     <color name="login_form_hint">#ffb5b5b5</color>
     <color name="yellow_light">#ffefa717</color>
 
+    <color name="cdddddd">#dddddd</color>
+    <color name="cffffff">#ffffff</color>
+    <color name="cefefef">#efefef</color>
+    <color name="c37a7f6">#37a7f6</color>
+    <color name="cf6f6f6">#f6f6f6</color>
+    <color name="c545454">#545454</color>
+    <color name="c2fb0bf">#2fb0bf</color>
+    <color name="cff7c3c">#ff7c3c</color>
+    <color name="caeaeae">#aeaeae</color>
+    <color name="cc9c9c9">#c9c9c9</color>
+
 </resources>
