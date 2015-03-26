@@ -117,12 +117,12 @@ public class ScanActivity extends Activity {
         if (resultString.equals("")) {
             Toast.makeText(ScanActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
         }else {
-            Intent resultIntent = new Intent();
+            Intent intent = new Intent(ScanActivity.this, ScanResultActivity_.class);
             Bundle bundle = new Bundle();
             bundle.putString("result", resultString);
             bundle.putParcelable("bitmap", barcode);
-            resultIntent.putExtras(bundle);
-            this.setResult(RESULT_OK, resultIntent);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
         ScanActivity.this.finish();
     }

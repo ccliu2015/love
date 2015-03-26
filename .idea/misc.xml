@@ -3,8 +3,8 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ProjectDictionaryState">
-    <dictionary name="JZ" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -122,9 +122,6 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
-  </component>
-  <component name="SvnConfiguration">
-    <configuration>C:\Users\JZ\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="masterDetails">
     <states>
