@@ -1,81 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:background="@color/material_blue_grey_900"
-        android:layout_height="50dp">
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/white"
-            android:layout_margin="10dp"/>
-        <TextView
-            android:id="@+id/split"
-            android:layout_toRightOf="@+id/back"
-            android:background="@color/material_blue_grey_950"
-            android:layout_width="2dp"
-            android:layout_margin="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="25dp" />
-        <TextView
-            android:layout_toRightOf="@id/split"
-            android:text="添加朋友"
-            android:textSize="18dp"
-            android:gravity="center_vertical"
-            android:textColor="#ffffffff"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/container"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/header"
-        android:layout_alignParentBottom="true">
-        <TextView
-            android:id="@+id/anno"
-            android:text="在此填写问题提交给我们"
-            android:gravity="center"
+        android:gravity="center"
+        android:background="@color/white"
+        android:id="@+id/relativeLayout">
+        <SearchView
+            android:id="@+id/searchFriends"
             android:layout_width="fill_parent"
-            android:layout_height="50dp" />
-        <MultiAutoCompleteTextView
-            android:id="@+id/feed"
-            android:layout_below="@+id/anno"
-            android:background="@color/white"
-            android:layout_width="fill_parent"
-            android:lines="10"
-            android:gravity="top"
-            android:padding="4dp"
-            android:textSize="14dp"
-            android:hint="@string/feed_anno"
+            android:layout_height="fill_parent"></SearchView>
+        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/myInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_below="@+id/relativeLayout">
+        <ImageView
+            android:src="@drawable/qcode"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/email"
-            android:textSize="14dp"
-            android:gravity="center_vertical"
-            android:padding="4dp"
-            android:layout_marginTop="15dp"
-            android:layout_below="@+id/feed"
-            android:background="@color/white"
+        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/friendContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/relativeLayout">
+        <ListView
+            android:id="@+id/friendList"
             android:layout_width="fill_parent"
-            android:hint="@string/feed_email"
-            android:layout_height="50dp" />
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_below="@+id/email"
-            android:background="@drawable/love_green_btn"
-            android:text="提交"
-            android:layout_margin="20dp"></Button>
-    </RelativeLayout>
+            android:layout_height="fill_parent"></ListView>
+        </RelativeLayout>
 </RelativeLayout>
